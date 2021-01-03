@@ -10,6 +10,8 @@ require('dotenv').config({
     path:'./config/config.env'
 })
 
+app.use(bodyparser.json())
+
 //Config for only development
 if(process.env.NODE_ENV==='development'){
     app.use(cors({
@@ -20,7 +22,12 @@ if(process.env.NODE_ENV==='development'){
     //Morgan give information about each request
     // Cors allow to deal with react for localhost
 }
+// Load all routes
 
+const authRouter= require('./routes/auth_router')
+
+//Use Routes
+app.use('/api/',authRouter);
 
 app.use((req,res,next)=>{
     res.status(404).json({
