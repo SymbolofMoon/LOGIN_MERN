@@ -31,5 +31,4 @@ router.put('/forgotpassword', forgotPasswordValidator, forgotPasswordController)
 router.put('/resetpassword', resetPasswordValidator, resetPasswordController);
 
 
-router.post('/googlelogin', googleController)
 module.exports = router

@@ -70,7 +70,7 @@ const Login = ({ history }) => {
       setFormData({ ...formData, textChange: 'Submitting' });
       axios
         .post(`http://localhost:5002/api/login`, {
-          email,
+          email:email,
           password: password1
         })
         .then(res => {
@@ -81,6 +81,7 @@ const Login = ({ history }) => {
               password1: '',
               textChange: 'Submitted'
             });
+            console.log("Hey lav")
             isAuth() && isAuth().role === 'admin'
               ? history.push('/admin')
               : history.push('/private');
