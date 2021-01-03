@@ -10,6 +10,27 @@ require('dotenv').config({
     path:'./config/config.env'
 })
 
+//Config for only development
+if(process.env.NODE_ENV==='development'){
+    app.use(cors({
+        origin: process.env.CLIENT_URL
+    }))
+
+    app.use(morgan('dev'))
+    //Morgan give information about each request
+    // Cors allow to deal with react for localhost
+}
+
+
+app.use((req,res,next)=>{
+    res.status(404).json({
+        success: false,
+        message:"Page Not Found"
+    })
+})
+
+
+
 const PORT = process.env.PORT
 
 
