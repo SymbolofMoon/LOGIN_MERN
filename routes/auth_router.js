@@ -13,7 +13,8 @@ const {
 const {
     registerController,
     activationController,
-    loginController
+    loginController,
+    forgotPasswordController
 } = require('../controllers/auth.controller')
 
 router.post('/register',
@@ -24,5 +25,5 @@ router.post('/login',
     validLogin,
 loginController)    
 router.post('/activation',activationController)    
-
+router.put('/forgotpassword', forgotPasswordValidator, forgotPasswordController);
 module.exports = router
