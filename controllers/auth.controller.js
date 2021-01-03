@@ -107,7 +107,8 @@ exports.registerController = (req, res) => {
               return res.json({
                 success: true,
                 message: user,
-                message: 'Signup success'
+                message: 'Signup success',
+                user
               });
             }
           });

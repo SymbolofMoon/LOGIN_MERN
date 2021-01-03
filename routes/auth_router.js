@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 const {
-    validSign,
+    validRegister,
     validLogin,
     forgotPasswordValidator,
     resetPasswordValidator
@@ -16,7 +16,7 @@ const {
 } = require('../controllers/auth.controller')
 
 router.post('/register',
-            validSign,
+            validRegister,
     registerController)
 router.post('/activation',activationController)    
 
