@@ -6,6 +6,7 @@ import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { LinkedIn } from 'react-linkedin-login-oauth2';
 
 const Login = ({ history }) => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const Login = ({ history }) => {
   const sendGoogleToken = tokenId => {
     axios
       .post(`http://localhost:5002/api/googlelogin`, {
-        idToken: tokenId
+        tokenId: tokenId
       })
       .then(res => {
         console.log(res.data);
@@ -55,13 +56,24 @@ const Login = ({ history }) => {
   };
   const responseGoogle = response => {
     console.log(response);
+    
     sendGoogleToken(response.tokenId);
+  };
+
+  const responseGoogleee = err => {
+    console.log(err);
+    console.log("This is fail")
+    
   };
 
   const responseFacebook = response => {
     console.log(response);
     sendFacebookToken(response.userID, response.accessToken)
   };
+
+  const responseLinkedin = (response)=>{
+    console.log("Ho")
+  }
 
   const handleSubmit = e => {
     console.log(process.env.REACT_APP_API_URL);
@@ -81,7 +93,7 @@ const Login = ({ history }) => {
               password1: '',
               textChange: 'Submitted'
             });
-            console.log("Hey lav")
+            
             isAuth() && isAuth().role === 'admin'
               ? history.push('/admin')
               : history.push('/private');
@@ -115,9 +127,9 @@ const Login = ({ history }) => {
             <div className='w-full flex-1 mt-8 text-indigo-500'>
               <div className='flex flex-col items-center'>
                 <GoogleLogin
-                  clientId={`${process.env.REACT_APP_GOOGLE_CLIENT}`}
+                  clientId='618369471721-sg5dq58ivgu499epjh4h4rj37e64ma3c.apps.googleusercontent.com'
                   onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
+                  onFailure={responseGoogleee}
                   cookiePolicy={'single_host_origin'}
                   render={renderProps => (
                     <button
@@ -148,6 +160,21 @@ const Login = ({ history }) => {
                     </button>
                   )}
                 />
+
+                 <LinkedIn
+                   clientId="81lx5we2omq9xh"
+                   onFailure={responseLinkedin}
+                   onSuccess={responseLinkedin}
+                   redirectUri="http://localhost:3001"
+                   renderElement={(renderProps) => (
+                     <button onClick={renderProps.onClick} disabled={renderProps.disabled} className='w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5'>
+                       <div className=' p-2 rounded-full '>
+                        <i className='fab fa-linkedin ' /><span className='ml-4'>Sign In with LinkedIN</span>
+                      </div>
+                     </button>
+                   )}
+                 />  
+ 
 
                 <a
                   className='w-full max-w-xs font-bold shadow-sm rounded-lg py-3

@@ -311,16 +311,16 @@ exports.registerController = (req, res) => {
 
 
   //GOOGLE AUTH
-  const client = new OAuth2Client(process.env.GOOGLE_CLIENT);
+  const client = new OAuth2Client("618369471721-sg5dq58ivgu499epjh4h4rj37e64ma3c.apps.googleusercontent.com");
   // Google Login
-  exports.googleController = (req, res) => {
-    const { idToken } = req.body;
-  
-    client
-      .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT })
+exports.googleController = async (req, res) => {
+    const { tokenId } = req.body;
+    console.log(tokenId)
+    client.verifyIdToken({ idToken: tokenId, audience: "618369471721-sg5dq58ivgu499epjh4h4rj37e64ma3c.apps.googleusercontent.com" })
       .then(response => {
         // console.log('GOOGLE LOGIN RESPONSE',response)
         const { email_verified, name, email } = response.payload;
+        console.log(response.payload)
         if (email_verified) {
           User.findOne({ email }).exec((err, user) => {
             if (user) {
