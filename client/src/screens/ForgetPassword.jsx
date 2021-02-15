@@ -38,12 +38,16 @@ const ForgetPassword = ({history}) => {
     }
   };
   return (
-    <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
+    <div style={{ backgroundColor: "#e9204f", /* fallback for old browsers */
+    background: "-webkit-linear-gradient(to right, #e9204f, #e9204f)",
+    background: "linear-gradient(to right, #e9204f, #e9204f)" }}  className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
       <ToastContainer />
       <div className='max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1'>
-        <div className='lg:w-1/2 xl:w-5/12 p-6 sm:p-12'>
-          <div className='mt-12 flex flex-col items-center'>
-            <h1 className='text-2xl xl:text-3xl font-extrabold'>
+        <div  style={{ backgroundColor: "#fff",
+        background: "-webkit-linear-gradient(to right, #fff, #fff)",
+        background: "linear-gradient(to right, #fff, #fff)", borderradius: "1rem" }} className='lg:w-1/2 xl:w-5/12 p-6 sm:p-12'>
+          <div  style={{ borderradius: "3rem" }} className='mt-12 flex flex-col items-center'>
+            <h1 style={{ color: "#e9204f" }}  className='text-2xl xl:text-3xl font-extrabold'>
               Forget Password
             </h1>
             <div className='w-full flex-1 mt-8 text-indigo-500'>
@@ -53,6 +57,7 @@ const ForgetPassword = ({history}) => {
                 onSubmit={handleSubmit}
               >
                 <input
+                style={{ backgroundColor: "black" }}
                   className='w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white'
                   type='email'
                   placeholder='Email'
@@ -60,11 +65,12 @@ const ForgetPassword = ({history}) => {
                   value={email}
                 />
                 <button
+                 style={{ backgroundColor: "#e9204f" }}
                   type='submit'
                   className='mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'
                 >
                   <i className='fas fa-sign-in-alt  w-6  -ml-2' />
-                  <span className='ml-3'>Submit</span>
+                  <span  style={{ color:"white" }} className='ml-3'>Submit</span>
                 </button>
               </form>
             </div>
